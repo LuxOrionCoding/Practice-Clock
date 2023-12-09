@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real working clock</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="clock-container">
+        <div class="marking-time1"></div>
+        <div class="time-numbers">
+            <div class="vertical-num"></div>
+            <div class="diagonal-1-num"></div>
+            <div class="diagonal-2-num"></div>
+            <div class="horizontal-num"></div>
+            <div class="diagonal-3-num"></div>
+            <div class="diagonal-4-num"></div>
+        </div>
+        
+        <div class="seconds-container">
+            <div class="seconds" style="--clr: var(--seconds-clr);"></div>
+        </div>
+        <div class="minutes-container">
+            <div class="minutes" style="--clr: var(--minutes-clr);"></div>
+        </div>
+        <div class="hours-container">
+            <div class="hours" style="--clr: var(--hours-clr);"></div>
+        </div>
+    </div>
+
+    <div class="theme-selector-container">
+        <input type="checkbox" name="theme-toggle" id="theme-changer__checkbox">
+        <label for="theme-toggle" id="theme-changer__label">White Theme</label>
+    </div>
+</body>
+</html>

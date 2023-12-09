@@ -1,0 +1,246 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+:root {
+	--website-bg-clr: #111;
+	--clock-bg: transparent;
+
+	--clock-clr: #1f1f1f;
+	--clock-frame-clr: violet;
+	--seconds-clr: violet;
+	--minutes-clr: blueviolet;
+	--hours-clr: purple;
+
+	--font-clr: white;
+}
+
+body {
+	background-color: var(--website-bg-clr);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+.clock-container {
+	position: relative;
+	--clock-sz: 30rem;
+	width: var(--clock-sz);
+	height: var(--clock-sz);
+	background: var(--clock-bg);
+	border: 8px solid var(--clock-frame-clr);
+	border-radius: 50%;
+	z-index: 5;
+
+	/* box-shadow: 13px 13px 18px rgba(0, 0, 0, 0.431);
+	box-shadow: 0 0 20px var(--clock-frame-clr); */
+
+	/* custom property */
+	--marker-height: 70%;
+	--marker-width: 5px;
+
+	overflow: hidden;
+}
+
+.clock-container::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	margin: auto;
+
+	--circle-sz: 5%;
+	width: var(--circle-sz);
+	height: var(--circle-sz);
+	/* background-color: var(--clock-clr); */
+	background-color: black;
+	border-radius: 50%;
+	z-index: 5;
+}
+
+.marking-time1 {
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	width: var(--marker-width);
+	height: 70%;
+	background-color: var(--clock-clr);
+}
+.marking-time1::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	transform: rotate(90deg);
+	background-color: var(--clock-clr);
+}
+
+.time-numbers > * {
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	display: block;
+	width: var(--marker-width);
+	height: 96%;
+}
+
+.time-numbers > *::before, 
+.time-numbers > *::after {
+	position: absolute;
+	left: 50%;
+	translate: -50%;
+	font-size: 2.5rem;
+	font-weight: 500;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	color: var(--font-clr);
+	transform-origin: center;
+}
+
+.time-numbers > *::before { top: 0; }
+.time-numbers > *::after { bottom: 0; }
+
+.vertical-num::before { content: "12"; }
+.vertical-num::after { content: "6"; }
+
+.horizontal-num { rotate: 90deg; }
+.horizontal-num::before {
+	content: "3"; rotate: -90deg;
+}
+.horizontal-num::after {
+	content: "9"; rotate: -90deg;
+}
+
+.diagonal-1-num { rotate: 30deg; }
+.diagonal-1-num::before {
+	content: "1"; rotate: -30deg;
+}
+.diagonal-1-num::after {
+	content: "7"; rotate: -30deg;
+}
+
+.diagonal-2-num { rotate: 60deg; }
+.diagonal-2-num::before {
+	content: "2"; rotate: -60deg;
+}
+.diagonal-2-num::after {
+	content: "8"; rotate: -60deg;
+}
+
+.diagonal-3-num { rotate: -30deg; }
+.diagonal-3-num::before {
+	content: "11"; rotate: 30deg;
+}
+.diagonal-3-num::after {
+	content: "5"; rotate: 30deg;
+}
+
+.diagonal-4-num { rotate: -60deg; }
+.diagonal-4-num::before {
+	content: "10"; rotate: 60deg;
+}
+.diagonal-4-num::after {
+	content: "4"; rotate: 60deg;
+}
+
+
+@keyframes rotate {
+	0% {
+		transform-origin: bottom;
+	}
+
+	100% {
+		transform-origin: bottom;
+		transform: rotate(360deg);
+	}
+}
+
+.clock-container > div[class$="-container"] {
+	position: absolute;
+	inset: 0;
+}
+
+.seconds-container {
+	transition: transform .25s cubic-bezier(.4, 2.08, .55, .44);
+}
+
+.minutes-container {
+	transition: transform .3s cubic-bezier(.4, 2.08, .55, .44);
+}
+
+
+.seconds {
+	position: absolute;
+	inset: 0;
+	top: -13.2rem;
+	margin: auto;
+
+	width: 3px;
+	height: 45%;
+	background-color: var(--clr);
+	border-radius: 1px;
+	box-shadow: 2px 2px 20px 2px #00000036;
+
+	transform-origin: bottom;
+	/* animation: rotate 60s infinite steps(60); */
+	z-index: 3;
+}
+
+.minutes {
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	top: -12.65rem;
+
+	width: 8px;
+	height: 43%;
+	background-color: var(--clr);
+	border-radius: 5px;
+	box-shadow: 0 0 20px 4px var(--clr);
+
+	transform-origin: bottom;
+	/* animation: rotate 3600s infinite steps(60); */
+	z-index: 2;
+}	
+
+.hours {
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	top: -8rem;
+
+	width: 15px;
+	height: 28%;
+	background-color: var(--clr);
+	border-radius: 10px;
+	box-shadow: 0 0 20px 4px var(--clr);
+
+	transform-origin: bottom;
+	/* animation: rotate 43200s infinite steps(60); */
+	transform-origin: bottom;
+	z-index: 1;
+}
+
+
+#theme-changer__checkbox {
+	--checkbox-sz: 1.5rem;
+	height: var(--checkbox-sz);
+	width: var(--checkbox-sz);
+	margin-left: 3.5rem;
+	margin-right: .8rem;
+	cursor: pointer;
+}
+
+#theme-changer__label {
+	color: var(--font-clr);
+	font-size: 2.8rem;
+	font-family: 'Times New Roman', Times, serif;
+	cursor: text;
+}
